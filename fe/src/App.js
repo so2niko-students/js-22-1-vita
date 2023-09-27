@@ -8,7 +8,7 @@ function App() {
     fetch("http://localhost:3000/hello")
       .then((x) => x.text())
       .then((y) => {
-        if (y === "Hello world") {
+        if (y === "Hello World!") {
           console.log(`[${currentTime}]: server is online`);
         } else {
           console.log(`[${currentTime}]: server is offline'`);
