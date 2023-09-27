@@ -1,22 +1,27 @@
+import React, { useEffect } from 'react';
 import logo from "./logo.svg";
 import "./App.css";
 
+
 function App() {
   function serverStatus() {
-    const currentTime = new Date().toLocaleTimeString();
-
     fetch("http://localhost:3000/hello")
       .then((x) => x.text())
       .then((y) => {
+        const currentTime = new Date().toLocaleTimeString();
         if (y === "Hello World!") {
           console.log(`[${currentTime}]: server is online`);
         } else {
-          console.log(`[${currentTime}]: server is offline'`);
+          console.log(`[${currentTime}]: server is offline`);
         }
       });
   }
 
-  setInterval(serverStatus, 10000);
+  useEffect(() => {
+    const intervalId = setInterval(serverStatus, 10000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div className="App">
