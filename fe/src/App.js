@@ -1,28 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import logo from "./logo.svg";
 import "./App.css";
+import ServerStatus from './ServerStatus';
 
 
-function App() {
-  function serverStatus() {
-    fetch("http://localhost:3000/hello")
-      .then((x) => x.text())
-      .then((y) => {
-        const currentTime = new Date().toLocaleTimeString();
-        if (y === "Hello World!") {
-          console.log(`[${currentTime}]: server is online`);
-        } else {
-          console.log(`[${currentTime}]: server is offline`);
-        }
-      });
-  }
-
-  useEffect(() => {
-    const intervalId = setInterval(serverStatus, 10000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
+function App(){
   return (
     <div className="App">
       <header className="App-header">
@@ -38,6 +20,7 @@ function App() {
         >
           Learn React
         </a>
+        <ServerStatus />
       </header>
     </div>
   );
